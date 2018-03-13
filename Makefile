@@ -19,5 +19,8 @@ docker_build:
 	docker build -t $(DOCKER_IMAGE_NAME) .
 	docker tag $(DOCKER_IMAGE_NAME) $(PROJECT_NAME):latest
 
+docker_run:
+	docker run -it -p $(HOST_PORT):$(CONTAINER_PORT) $(DOCKER_IMAGE_NAME) /bin/bash
+
 docker_runserver:
 	docker run -it -p $(HOST_PORT):$(CONTAINER_PORT) $(DOCKER_IMAGE_NAME)
