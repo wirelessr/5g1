@@ -8,6 +8,9 @@ DOCKER_IMAGE_NAME=$(PROJECT_NAME):$(DOCKER_IMAGE_VERSION)
 HOST_PORT=80
 CONTAINER_PORT=80
 
+CURRENT_DIR=$(shell pwd)
+MOUNT_LOCAL_DIR=$(CURRENT_DIR)/app
+CONTAINER_WORK_DIR=/app
 
 install-requirements:
 	pip3 install -r requirements.txt
@@ -24,3 +27,6 @@ docker_run:
 
 docker_runserver:
 	docker run -it -p $(HOST_PORT):$(CONTAINER_PORT) $(DOCKER_IMAGE_NAME)
+
+docker_runserver_mount_local:
+	docker run -it -p $(HOST_PORT):$(CONTAINER_PORT) -v $(MOUNT_LOCAL_DIR):$(CONTAINER_WORK_DIR) $(DOCKER_IMAGE_NAME)
