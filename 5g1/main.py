@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
-import configparser
 import time
 
 import requests
 
 from logger import logger
 from constants import (
-    API_URL, CONDITIONS, WEB_URL_FORMAT_STR, SETTINGS_PATH, HEADERS,
+    API_URL, CONDITIONS, WEB_URL_FORMAT_STR, HEADERS,
 )
 
 
@@ -61,12 +60,9 @@ def search_houses():
 
 
 def main():
-    config = configparser.ConfigParser()
-    config.read(SETTINGS_PATH)
-
     while True:
         search_houses()
-        time.sleep(int(config['default']['parse_interval_in_seconds']))
+        time.sleep(1800)
 
 
 if __name__ == "__main__":
