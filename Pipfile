@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+Flask = "==0.12.2"
+"flask-googlemaps" = "==0.2.5"
+requests = "==2.18.4"
+
+
+[dev-packages]
