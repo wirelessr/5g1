@@ -1,0 +1,2 @@
+DEBUG = True
+GOOGLEMAPS_KEY = ""
