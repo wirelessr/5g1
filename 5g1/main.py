@@ -10,6 +10,8 @@ from constants import (
     API_URL, CONDITIONS, WEB_URL_FORMAT_STR, SETTINGS_PATH, HEADERS,
 )
 
+from render import render
+
 from html.parser import HTMLParser
 class MyHTMLParser(HTMLParser):
     def __init__(self):
@@ -21,7 +23,7 @@ class MyHTMLParser(HTMLParser):
                 if attr == 'value':
                     self.img = value
 
-cache = set()
+cache = []
 
 
 def get_houses(config):
@@ -78,23 +80,20 @@ def get_img_url(house):
 def search_houses(config):
     houses = get_houses(config)
     for house in houses:
-        if house['post_id'] in cache:
-            continue
-
         get_img_url(house)
-        log_house_info(house)
-        cache.update([house['post_id']])
+        #log_house_info(house)
+        cache.append(house)
 
 
 def main():
     config = configparser.ConfigParser()
     config.read(SETTINGS_PATH)
 
-    while True:
-        search_houses(config)
-        print('cache size:', len(cache))
-        time.sleep(int(config['default']['parse_interval_in_seconds']))
 
+    search_houses(config)
+    print('cache size:', len(cache))
+    #time.sleep(int(config['default']['parse_interval_in_seconds']))
+    render(cache)
 
 if __name__ == "__main__":
     main()
