@@ -27,6 +27,12 @@ figure{
 figure img{
   width: 100%;
 }
+figure img:hover{
+  width: auto;
+  height: 400px;
+  position:relative;
+  z-index:99999;
+}
 figure figcaption{
   text-align: center;
   padding: 8px 4px;
